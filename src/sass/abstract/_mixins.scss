@@ -1,0 +1,42 @@
+
+// @mixin font ($size, $font-family, $weight: bold, $font-style: normal) {
+//   font-size: $size;
+//   font-family: $font-family;
+//   font-weight: $weight;
+//   font-style: $font-style;
+// }
+
+// @mixin widthAndHeight($width, $height) {
+//   width: $width;
+//   height: $height;
+// }
+// @mixin flex ($justify-content: normal, $align-items:normal) {
+//     display: flex;
+//     justify-content: $justify-content;
+//     align-items: $align-items;
+//   }
+
+// @mixin columns ($width) {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   >* {
+//      flex-basis: $width;
+//   }
+// }
+
+// @mixin media-laptop {
+//   @media (max-width: $content-width) { @content; }
+// }
+
+// @mixin media-tablet {
+//   @media (max-width: $tablet-width) { @content; }
+// }
+  
+// @mixin media-mobile {
+//   @media (max-width: $mobile-big-width) { @content; }
+// }
+
+// @mixin media-mobilesmall {
+//   @media (max-width: $mobile-small-width) { @content; }
+// }

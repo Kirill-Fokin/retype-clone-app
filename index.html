@@ -4,9 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>retype-clone-app</title>
+  <link rel="stylesheet" href="/src/css/style.css">
 </head>
 <body>
-
-  <script src="script.js"></script>
+  <div class="container">
+    <div class="app">
+      <header class="header">
+        <div class="settings">Русский Начало</div>
+        <button class="refresh-button">refresh</button>
+        <button class="focus-button">focus</button>
+        <div class="statistics">
+          <span class="speed">speed</span>
+          <span class="failures">failures</span>
+        </div>
+      </header>
+      <div class="text-panel">
+       <input type="text">
+       <div class="subtext"></div>
+      </div>
+      <div class="keyboard-container">
+      </div>
+      <footer class="footer"></footer>
+    </div>
+  </div>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
