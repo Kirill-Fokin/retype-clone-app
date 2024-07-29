@@ -3,7 +3,15 @@ const getRandomNumber = (min, max) => {
   return Math.floor(rand);
 }
 
+const createElement = (tagName, ...classNames) => {
+    const element = document.createElement(tagName);
+    element.classList.add(...classNames);
+  
+    return element;
+  };
+
 export {
-    getRandomNumber
+    getRandomNumber, 
+    createElement
 };
   
