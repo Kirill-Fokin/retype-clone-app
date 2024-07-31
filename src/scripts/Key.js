@@ -24,9 +24,9 @@ class Key {
       keyButton.style.fontSize = "1rem";
     }
 
-    this.container.keysWrapper.append(keyButton);
+    this.container.keyBoardWrapper.append(keyButton);
 
-    // ToDo: add audio
+    // ToDo: addaudio
   }    
 
 }

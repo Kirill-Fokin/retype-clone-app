@@ -1,9 +1,16 @@
 .keyboard-container {
     margin-top:  5rem;;
     display: flex;
-    height: 30rem;
+    row-gap: 0.3rem;
     flex-wrap: wrap;
-    column-gap: 0.5rem;
+    column-gap: 0.6rem;
     justify-content: center;
     align-items: center;
+    opacity: 1;
+    transition: all 1s ease-in-out;
+}
+
+.fade {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
 }

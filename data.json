@@ -1,4 +1,11 @@
 {
-  "rus" : ["привет", "пока", "лол"],
-  "eng" : ["damn", "winner", "game"]
+  "rus1" : ["привет", "пока", "лол", "когда", ",бесперспективно", "абуза", "Италия"],
+  "rus2" : [ ["Ребята отдыхали летним вечером. Вдали виднелись горы и лес."],
+             ["На улице было прохладно, ветрено. Дети бегали по зелёной лужайке."]
+           ],
+  "eng" : ["damn", "winner", "game", "winner", "Kanye", "west"],
+  "eng2" : [["She was walking slowly. They were playing football."], 
+            ["He is reading a book. We are having dinner."],
+            ["am writing a letter. You are listening to music."]
+           ]
 }
