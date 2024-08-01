@@ -3,24 +3,33 @@ import Key from "./Key.js";
 import TextPanel from "./TextPanel.js";
 
 class App {
-  
+
   constructor (
     keysConfig, 
     level = "1",
     languagePack= "rus"
-  ) {
-    
-    this.textPanel = new TextPanel(document.querySelector(".app"))
-  
+  ) {  
+    this.textPanel = new TextPanel(document.querySelector(".app"), this);
+    this.fetchData('/data.json')
     this.keysConfig = keysConfig;
     this.keys = [];
     this.initKeyboard(this.keysConfig);
 
-    
-    this.keyBoardWrapper.addEventListener('click', () => this.deleteKeyboard());
-    this.addData(this.fetchData('/data.json'));
-    
+    this.setCorrectKey() 
   }
+
+setCorrectKey(keyName) {
+
+  console.log(Array.from(this.keys).filter((el) => el.textContent ===  keyName))
+
+  Array.from(this.keys).filter((el) => el.textContent ===  keyName).forEach(el => {
+    el.classList.add('gray')
+    const handImage = createElement('div', 'hand');
+    handImage.src = '/src/assets/images/hand.png'
+    el.append(handImage )
+    // доделать нужный палец
+  })
+ }
 
   initKeyboard(keysConfig) {
     this.keyBoardWrapper = createElement("div", "keyboard-container", "fade" );
@@ -36,28 +45,24 @@ class App {
 
   fetch(dataUrl)
    .then(response => {
-     console.log('2');
+
      if (!response.ok) {
        throw new Error('Ошибка в fetch' + response.status.Text);
      }
      return response.json();
    })
-     .then(jsonData => jsonData
+     .then(jsonData => {
+      this.textPanel.update(jsonData);
+        
+      }    
      // .catch(error => console.error('Ошибка при исполнении запросп : ', error))
-   );
+   )
 
   }
 
   deleteKeyboard() {
     this.keyBoardWrapper.classList.add('fade')
   }
-
-  adData(data) {
-    this.data = data;
-  }
-
-  
-
 }
 
 export default App;

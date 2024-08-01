@@ -1,24 +1,28 @@
-import { createElement } from "./helpers.js";
+import { createElement, getRandomNumber } from "./helpers.js";
+
+ 
 
 
 export default class TextPanel {
-  constructor(contianer) {
-    this.container = this.container;
+  constructor(container, parent) {
+    this.container = container;
+    this.parent = parent;
     // this.advice = advice;
     this.letter = null;
 
-    this.init();
+    this.initPanel();
   }
 
-
-  init() {
+  checkLetter() {
+  }
+  
+  initPanel() {
     this.textPanel = createElement('div', "text-panel");
     this.textInp = createElement('input', "text-inp");
     this.textInp.type = "text";
     this.subText = createElement("div", "subtext");
-    
-    this.textPanel.append(this.textInp, this.subText);
     document.querySelector(".app").append(this.textPanel);
+    
   }
 
   clear() {
@@ -27,19 +31,25 @@ export default class TextPanel {
   }
 
   update(data) {
-    if (data.length < 10)  {
+    this.subTextChecked = createElement("span", "checked");
+    this.textPanel.prepend(this.textInp, this.subText);
+    this.sentence = createElement("span", "sentence");
+    this.subText.append(this.subTextChecked, this.sentence);
+    const word = (data.rus1[getRandomNumber(0,data.rus1.length - 1)]);
+    let i = 0;
 
-    } else {
-
+    while (this.sentence.textContent.length < 50) {
+      this.sentence.textContent += ` ${word}`
+      i++;
     }
 
-    // check(letter) {
-    //   return 
-    // }
+    if (this.sentence.textContent.length > 50) {
+      this.sentence.textContent =  this.sentence.textContent
+                                                .slice(0, this.sentence.textContent.length - word.length);
+    }
+    
+    this.nextLetter = this.sentence.textContent.slice(0,2);
+    console.log(this.nextLetter)
+    this.parent.setCorrectKey("А");
   }
-  
- 
-
-
 }
-

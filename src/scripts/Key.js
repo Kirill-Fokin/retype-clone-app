@@ -14,10 +14,8 @@ class Key {
     this.color = (this.data[key].color);
     this.size = this.data[key].size;
 
-    console.log(this.finger, this.color)
     keyButton.textContent = text;
     this.container.keys.push(keyButton);
-
 
     keyButton.style.width = `${this.size * 4.2}rem`;
     if (keyButton.textContent === 'Backspace' || keyButton.textContent === 'Caps Lock') {
