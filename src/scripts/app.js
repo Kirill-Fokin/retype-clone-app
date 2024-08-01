@@ -17,8 +17,8 @@ class App {
     this.initKeyboard(this.keysConfig);
 
     
-    this.keyBoardWrapper.addEventListener('click', () => {this.deleteKeyboard()})
-    // this.addData(this.fetchData('/data.json'));
+    this.keyBoardWrapper.addEventListener('click', () => this.deleteKeyboard());
+    this.addData(this.fetchData('/data.json'));
     
   }
 
