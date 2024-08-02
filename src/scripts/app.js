@@ -41,7 +41,18 @@ class App {
   checkKeyDown (e) {
    console.log(e.key)
 
-    return e.key === this.nextLetter.toLowerCase().trim();
+   this.keyboard.keys.forEach(function(el) {
+    console.log(el[4], e.key.toUpperCase())
+     if (el[4] === e.key.toUpperCase()) {
+      console.log(el[0].classList.add("green"))
+      console.log('trueth')
+     }
+   } 
+   )
+
+
+
+    // return e.key === this.nextLetter.toLowerCase().trim();
   }
 
 

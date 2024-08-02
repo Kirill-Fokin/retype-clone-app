@@ -44,8 +44,7 @@ export default class TextPanel {
                                                 .slice(0, this.sentence.textContent.length - word.length);
     }
     
-    this.nextLetter = this.sentence.textContent.slice(0,2);
-    console.log(this.nextLetter)
+    this.nextLetter = this.sentence.textContent.slice(0, 2);
     this.nextLetter.toUpperCase()
 
     this.parent.nextLetter = this.nextLetter
