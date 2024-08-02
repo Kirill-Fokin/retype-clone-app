@@ -11,8 +11,18 @@ const createElement = (tagName, ...classNames) => {
     return element;
   };
 
+
+  const setLocalStorage = (key, value) => {
+    localStorage.setItem(key, value);
+  };
+
+  const getLocalStorage = (key) => localStorage.getItem(key);
+
 export {
     getRandomNumber, 
-    createElement
+    createElement, 
+    setLocalStorage, 
+    getLocalStorage
+
 };
   
