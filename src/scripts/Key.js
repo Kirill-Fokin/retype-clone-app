@@ -1,13 +1,14 @@
 import { createElement } from "./helpers.js";
 
 class Key {
-  constructor(container, keyData, /*audio*/) {
+  constructor(container, keyData) {
     this.container = container;
     this.data = keyData;
     const keyButton = createElement('div', 'key');
 
     const text = (Object.keys(this.data)[0]);
     this.color = this.data.color;
+    // в зависимости от color будет сдвигаться hand 
     const key = Object.keys(this.data)[0]
 
     this.finger = (this.data[key].finger);
@@ -23,11 +24,8 @@ class Key {
     }
 
     this.container.keyBoardWrapper.append(keyButton);
-
     // ToDo: addaudio
   }    
-
 }
-
 
 export default Key;

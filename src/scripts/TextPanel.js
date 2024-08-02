@@ -1,13 +1,9 @@
 import { createElement, getRandomNumber } from "./helpers.js";
 
- 
-
-
 export default class TextPanel {
   constructor(container, parent) {
     this.container = container;
     this.parent = parent;
-    // this.advice = advice;
     this.letter = null;
 
     this.initPanel();
@@ -50,6 +46,16 @@ export default class TextPanel {
     
     this.nextLetter = this.sentence.textContent.slice(0,2);
     console.log(this.nextLetter)
-    this.parent.setCorrectKey("А");
+    this.nextLetter.toUpperCase()
+
+    
+
+
+    this.parent.setCorrectKey(this.getLetter.bind(this.textPanel));
+  }
+
+
+  getLetter() {
+    return this.nextLetter;
   }
 }

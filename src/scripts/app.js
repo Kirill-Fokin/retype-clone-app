@@ -15,10 +15,17 @@ class App {
     this.keys = [];
     this.initKeyboard(this.keysConfig);
 
-    this.setCorrectKey() 
+    
   }
 
 setCorrectKey(keyName) {
+
+  console.log(keyName)
+  // let keyName = this.textPanel
+
+  // console.log(keyName.texInp)
+  
+ 
 
   console.log(Array.from(this.keys).filter((el) => el.textContent ===  keyName))
 
