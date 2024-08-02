@@ -1,5 +1,6 @@
 import { createElement } from "./helpers.js";
 import Key from "./Key.js";
+import Keyboard from "./keyboard.js";
 import TextPanel from "./TextPanel.js";
 
 class App {
@@ -12,41 +13,47 @@ class App {
     this.textPanel = new TextPanel(document.querySelector(".app"), this);
     this.fetchData('/data.json')
     this.keysConfig = keysConfig;
+    this.keyboard = new Keyboard(document.querySelector(".app"));
     this.keys = [];
-    this.initKeyboard(this.keysConfig);
+    // this.initKeyboard(this.keysConfig);
+
+    
+    // document.addEventListener("keydown", (e) => {
+    //   console.log(e.key + ' нажато')
+    //   if (this.checkKeyDown(e)) {
+    //     console.log('corret button');
+    //   } else {
+    //     console.log('incorret button');
+    //   } 
+    // })
+
+
+    document.addEventListener("keydown", (e) => this.checkKeyDown(e))
 
     
   }
 
-setCorrectKey(keyName) {
 
-  console.log(keyName)
-  // let keyName = this.textPanel
+  setKeyHand() {
 
-  // console.log(keyName.texInp)
-  
- 
-
-  console.log(Array.from(this.keys).filter((el) => el.textContent ===  keyName))
-
-  Array.from(this.keys).filter((el) => el.textContent ===  keyName).forEach(el => {
-    el.classList.add('gray')
-    const handImage = createElement('div', 'hand');
-    handImage.src = '/src/assets/images/hand.png'
-    el.append(handImage )
-    // доделать нужный палец
-  })
- }
-
-  initKeyboard(keysConfig) {
-    this.keyBoardWrapper = createElement("div", "keyboard-container", "fade" );
-    setTimeout(() => this.keyBoardWrapper.classList.remove("fade"), 200);
-    
-    document.querySelector(".app").append(this.keyBoardWrapper);    
-    keysConfig.forEach((obj, indx) => {
-      const key = new Key(this, this.keysConfig[indx]);
-    });
   }
+
+  checkKeyDown (e) {
+   console.log(e.key)
+
+    return e.key === this.nextLetter.toLowerCase().trim();
+  }
+
+
+  // initKeyboard(keysConfig) {
+    // this.keyBoardWrapper = createElement("div", "keyboard-container", "fade" );
+    // setTimeout(() => this.keyBoardWrapper.classList.remove("fade"), 200);
+    
+      
+  //   keysConfig.forEach((obj, indx) => {
+  //     const key = new Key(this, this.keysConfig[indx]);
+  //   });
+  // }
 
   fetchData(dataUrl) {
 
@@ -63,10 +70,10 @@ setCorrectKey(keyName) {
         
       }    
      // .catch(error => console.error('Ошибка при исполнении запросп : ', error))
+
    )
 
   }
-
   deleteKeyboard() {
     this.keyBoardWrapper.classList.add('fade')
   }

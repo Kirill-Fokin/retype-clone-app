@@ -48,14 +48,13 @@ export default class TextPanel {
     console.log(this.nextLetter)
     this.nextLetter.toUpperCase()
 
+    this.parent.nextLetter = this.nextLetter
     
 
+    console.log(this.parent.nextLetter)
 
-    this.parent.setCorrectKey(this.getLetter.bind(this.textPanel));
   }
 
 
-  getLetter() {
-    return this.nextLetter;
-  }
+  
 }
