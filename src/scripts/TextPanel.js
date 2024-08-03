@@ -24,8 +24,11 @@ export default class TextPanel {
       if (this.sentence.textContent.length === 1) {
         console.log('последняя буква');
         this.parent.changeWord() 
+        this.subTextChecked.textContent = '';
+        this.textInp.value = '';п
       } else {
         this.changeLetter() 
+      
       }
       
       
@@ -36,11 +39,7 @@ export default class TextPanel {
   }
 
 
-  isFinalLetter() {
-    if (this.sentence.textContent.length === 1) {
-      this.parent.changeWord() 
-    }
-  }
+ 
 
 
   changeLetter() {
@@ -60,6 +59,10 @@ export default class TextPanel {
     this.subTextChecked = createElement("span", "checked");
     this.subText = createElement("div", "subtext");
     document.querySelector(".app").append(this.textPanel);
+
+    this.textPanel.prepend(this.textInp,  this.subText);
+    this.sentence = createElement("span", "sentence");
+    this.subText.append(this.subTextChecked, this.sentence);
   }
 
   clear() {
@@ -67,13 +70,10 @@ export default class TextPanel {
   }
 
   updateData(data) {
-    this.textPanel.prepend(this.textInp,  this.subText);
-    this.sentence = createElement("span", "sentence");
-    this.subText.append(this.subTextChecked, this.sentence);
     const word = (data.rus1[getRandomNumber(0, data.rus1.length - 1)]);
 
     let i = 0;
-    while (this.sentence.textContent.length < 50) {
+    while (this.sentence.textContent.length < 10) {
       if (i == 0) {
         this.sentence.textContent += `${word}`
       } else {

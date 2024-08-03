@@ -23,6 +23,11 @@ class App {
   }
 
 
+  changeWord() {
+    this.fetchData('/data.json');
+  }
+
+
   checkKeyDown(e) {
    this.keyboard.keys.forEach((keyObj) => {
 
