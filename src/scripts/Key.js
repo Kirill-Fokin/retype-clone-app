@@ -21,6 +21,7 @@ class Key {
     this.color = (this.data[key]).color;
     this.size = (this.data[key]).size;
 
+    // object destruction
     // this.container.keys.push([keyButton, this.finger, this.color, this.size, text])
 
     this.keyButton.style.width = `${this.size * 4.2}rem`;
@@ -33,7 +34,7 @@ class Key {
 
   highLightCorrect() {
     this.keyButton.classList.add('green');
-    setTimeout(() => this.keyButton.classList.remove('green'), 500)
+    setTimeout(() => this.keyButton.classList.remove('green'), 500);
   }
 
   addCoordinates() {

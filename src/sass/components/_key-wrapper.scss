@@ -10,6 +10,25 @@
     transition: all 1s ease-in-out;
 }
 
+
+.keyboard-container .none {
+  display: none;
+}
+
+.version_block {
+   display: flex;
+   flex-direction: column;
+  padding: 2rem;
+  border: 2px solid white;
+  position: absolute;
+  bottom: 0;
+
+  span {
+    font-size: 2rem;
+    color: white;
+  }
+}
+
 .gray {
   background-color: gray;
 }

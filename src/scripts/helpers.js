@@ -16,7 +16,7 @@ const createElement = (tagName, ...classNames) => {
     localStorage.setItem(key, value);
   };
 
-  const getLocalStorage = (key) => localStorage.getItem(key);
+  const getLocalStorage = key => localStorage.getItem(key);
 
 export {
     getRandomNumber, 
