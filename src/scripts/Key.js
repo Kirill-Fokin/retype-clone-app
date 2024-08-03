@@ -10,10 +10,10 @@ class Key {
   }    
 
   render() {
-    const keyButton = createElement('div', 'key');
+    this.keyButton = createElement('div', 'key');
 
-    const text = (Object.keys(this.data)[0]);
-    keyButton.textContent = text;
+    this.text = (Object.keys(this.data)[0]);
+    this.keyButton.textContent = this.text;
 
     const key = Object.keys(this.data)[0]    
 
@@ -21,12 +21,19 @@ class Key {
     this.color = (this.data[key]).color;
     this.size = (this.data[key]).size;
 
-    this.container.keys.push([keyButton, this.finger, this.color, this.size, text])
+    // this.container.keys.push([keyButton, this.finger, this.color, this.size, text])
 
-    keyButton.style.width = `${this.size * 4.2}rem`;
-    if (keyButton.textContent === 'Backspace' || keyButton.textContent === 'Caps Lock') {
-      keyButton.style.fontSize = "1rem";
+    this.keyButton.style.width = `${this.size * 4.2}rem`;
+    if (this.keyButton.textContent === 'Backspace' || this.keyButton.textContent === 'Caps Lock') {
+      this.keyButton.style.fontSize = "1rem";
     }
+
+    this.container.board.append(this.keyButton);
+  }
+
+  highLightCorrect() {
+    this.keyButton.classList.add('green');
+    setTimeout(() => this.keyButton.classList.remove('green'), 500)
   }
 
   addCoordinates() {

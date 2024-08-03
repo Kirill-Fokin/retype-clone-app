@@ -18,7 +18,7 @@ export default class Keyboard {
 
     for (let i = 0; i < rusKeys.length; i++) {
       const key = new Key(this, rusKeys[i]);
-      this.board.append(this.keys[i][0]);   
+      this.keys.push(key);
     }
     
     this.container.append(this.board);
