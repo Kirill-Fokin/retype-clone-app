@@ -10,13 +10,15 @@ class App {
     level = "1",
     languagePack= "rus"
   ) {  
-    this.nextLetter = null;
     this.textPanel = new TextPanel(document.querySelector(".app"), this);
     this.fetchData('/data.json')
     this.keysConfig = keysConfig;
     this.keyboard = new Keyboard(document.querySelector(".app"));
     this.keys = [];
     document.addEventListener("keydown", (e) => {this.checkKeyDown(e)
+      
+    
+      // make parametr isActive that reacts on input focus
     })
   }
 
@@ -41,7 +43,7 @@ class App {
      return response.json();
    })
      .then(jsonData => {
-      this.textPanel.update(jsonData);
+      this.textPanel.updateData(jsonData);
     })
   }
 }
