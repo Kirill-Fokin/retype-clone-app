@@ -73,6 +73,6 @@ export default class TextPanel {
     if (this.sentence.textContent.length > 50) {
       this.sentence.textContent =  this.sentence.textContent.slice(0, this.sentence.textContent.length - word.length);
     }
-      this.nextLetter = this.sentence.textContent.slice(0, 1);g
+      this.nextLetter = this.sentence.textContent.slice(0, 1);
   }
 }

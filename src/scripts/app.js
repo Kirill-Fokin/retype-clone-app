@@ -1,4 +1,4 @@
-import { createElement } from "./helpers.js";
+import { createElement, setLocalStorage } from "./helpers.js";
 import Key from "./Key.js";
 import Keyboard from "./keyboard.js";
 import TextPanel from "./TextPanel.js";
@@ -20,6 +20,13 @@ class App {
       (e.key === "Backspace") ? e.preventDefault() : this.checkKeyDown(e);
       // make parametr isActive that reacts on input focus
     });
+
+   window.addEventListener("beforeunload", () => {  
+      console.log('sended');
+      setLocalStorage  ("safe", JSON.stringify({data : "kek"}));
+     // отправка состояния игры
+  })
+  
   }
   
   set isFocus(value) {
