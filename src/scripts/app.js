@@ -17,19 +17,16 @@ class App {
     this.keyboard = new Keyboard(document.querySelector(".app"));
     this.keys = [];
     document.addEventListener("keydown", e => {
-      console.log("1" + e.key  + '1');
-      
+
      Key.defineKey(e, this);
       // make parametr isActive that reacts on input focus
-      
     });
 
    window.addEventListener("beforeunload", () => {  
       console.log('sended');
       setLocalStorage  ("safe", JSON.stringify({data : "kek"}));
      // отправка состояния игры
-  })
-  
+  });
   }
   
   set isFocus(value) {

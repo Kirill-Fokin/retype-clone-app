@@ -9,29 +9,25 @@ class Key {
     // ToDo: addaudio
   }    
 
-
   static defineKey(event, parent) {
-     console.log('sdlfjdslf')
-   switch (event.key) {
-    case " ":
-    parent.checkKeyDown('WHITESPACE');
-    break;
-    case "Backspace":
-    event.preventDefault(); 
-    parent.checkKeyDown('BACKSPACE');
-    break;
-    default : 
-    parent.checkKeyDown(event.key)
-    break;
-   }
-
+    switch (event.key) {
+      case " ":
+      parent.checkKeyDown('WHITESPACE');
+      break;
+      case "Backspace":
+      event.preventDefault(); 
+      parent.checkKeyDown('BACKSPACE');
+      break;
+      default : 
+      parent.checkKeyDown(event.key)
+      break;
+    }
   }
 
   render() {
     this.keyButton = createElement('div', 'key');
 
     this.text = (Object.keys(this.data)[0]);
-    console.log(this.text)
     this.keyButton.textContent = this.text;
 
     const key = Object.keys(this.data)[0]    
@@ -47,7 +43,6 @@ class Key {
     if (this.keyButton.textContent === 'Backspace' || this.keyButton.textContent === 'Caps Lock') {
       this.keyButton.style.fontSize = "1rem";
     }
-
     this.container.board.append(this.keyButton);
   }
 
