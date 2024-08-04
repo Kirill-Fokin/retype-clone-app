@@ -11,15 +11,17 @@ export default class TextPanel {
   }
 
   checkLetter() {
-    const lastInpLetter =  this.textInp.value[this.textInp.value.length - 1];
+    const lastInpLetter =  this.textInp.value.slice(-1);
     // добавить поддержку пробела
+
+
 
     if (lastInpLetter !==  this.nextLetter) {
 
       setTimeout(() => {
         const currenValue = this.textInp.value;
         this.textInp.value = currenValue.slice(0, -1);
-      }, 300)
+      }, 200)
     } else {
       if (this.sentence.textContent.length === 1) {
         this.parent.changeWord() 

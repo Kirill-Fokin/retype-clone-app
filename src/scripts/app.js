@@ -1,7 +1,7 @@
 import { createElement, setLocalStorage } from "./helpers.js";
-import Key from "./Key.js";
 import Keyboard from "./keyboard.js";
 import TextPanel from "./TextPanel.js";
+import Key from "./Key.js";
 
 class App {
 
@@ -16,9 +16,12 @@ class App {
     this.keysConfig = keysConfig;
     this.keyboard = new Keyboard(document.querySelector(".app"));
     this.keys = [];
-    document.addEventListener("keydown", (e) => {
-      (e.key === "Backspace") ? e.preventDefault() : this.checkKeyDown(e);
+    document.addEventListener("keydown", e => {
+      console.log("1" + e.key  + '1');
+      
+     Key.defineKey(e, this);
       // make parametr isActive that reacts on input focus
+      
     });
 
    window.addEventListener("beforeunload", () => {  
@@ -41,10 +44,11 @@ class App {
     this.fetchData('/data.json');
   }
 
-  checkKeyDown(e) {
-   this.keyboard.keys.forEach(keyObj => {
-
-      if(keyObj.text === e.key.toUpperCase()) {
+  checkKeyDown(keyName) {
+    console.log(this)
+   this.keyboard.keys.forEach( keyObj => {
+    console.log(keyName.toUpperCase())
+      if(keyObj.text.toUpperCase() === keyName.toUpperCase()) {
         keyObj.highLightCorrect();
       } 
    });
