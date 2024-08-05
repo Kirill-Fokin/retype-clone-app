@@ -1,4 +1,4 @@
-import { createElement, getRandomNumber } from "./helpers.js";
+import { createElement, getRandomNumber, getSimpleAnimated} from "./helpers.js";
 
 export default class TextPanel {
   constructor(container, parent) {
@@ -22,19 +22,24 @@ export default class TextPanel {
       }, 200)
     } else {
       if (this.sentence.textContent.length === 1) {
-        this.parent.changeWord() 
+        this.sentence.textContent = ''
+        this.parent.changeWord();
         this.subTextChecked.textContent = '';
         this.textInp.value = '';
+        getSimpleAnimated(this.textInp, "green", 200) 
       } else {
         this.changeLetter() 
       }
     }
   }
 
+
+  
+
   changeLetter() {
     const firstSubtextLetter = this.sentence.textContent[0];
     this.sentence.textContent = this.sentence.textContent.slice(1);
-    this.subTextChecked.textContent  +=  firstSubtextLetter;
+    this.subTextChecked.textContent  += firstSubtextLetter;
     this.nextLetter = this.sentence.textContent[0];
   }
   

@@ -50,11 +50,18 @@ const createElement = (tagName, ...classNames) => {
 
   const getLocalStorage = key => localStorage.getItem(key);
 
+  const getSimpleAnimated = ( (elem, style, speed )=> {
+    elem.classList.add(style);
+    console.log(elem, style)
+    setTimeout(() =>  elem.classList.remove(style), speed);
+  }); 
+
 export {
     getRandomNumber, 
     createElement, 
     setLocalStorage, 
     getLocalStorage,
-    getColor
+    getColor,
+    getSimpleAnimated
 };
   
