@@ -12,18 +12,22 @@ class App {
     _isFocus = "false",
     _speed = null,
     _mistakes = null,
+    _colors = false,
+    _isKeyboard = true,
   ) {  
     this.textPanel = new TextPanel(document.querySelector(".app"), this);
     this.fetchData("/data.json");
     this.keysConfig = keysConfig;
     this.keyboard = new Keyboard(document.querySelector(".app"));
     this.keys = [];
-    // document.addEventListener("keydown", e => {
 
-    //  Key.defineKey(e, this);
-    //   // make parametr isActive that reacts on input focus
-    // });
+    this.colorButton = document.querySelector(".paint")
+    this.boardButton = document.querySelector(".keyboard-add")
 
+    this.boardButton.addEventListener('click', () => this.isKeyboard = this.isKeyboard)
+    this.colorButton.addEventListener('click', () => this.colors = this.colors)
+    
+    this.textPanel.textPanel.append(document.querySelector(".additional-settings"));
     document.addEventListener("keypress", e => {
       console.log(e);
       Key.defineKey(e, this);
@@ -37,6 +41,21 @@ class App {
      // отправка состояния игры
   });
   }
+
+
+  set isKeyboard (value) {
+     if (value) {
+      this._isKeyboard = true;
+      this.keyboard.board.classList.add('none')
+     } else {
+      this._isKeyboard = false;
+      this.keyboard.board.classList.remove('none')
+     }
+  }
+
+  get isKeyboard() {
+    return !this._isKeyboard;
+  }
   
   set isFocus(value) {
      value == true ? this.keyboard.board.classList.remove('none') : this.keyboard.board.classList.add('none');
@@ -48,6 +67,23 @@ class App {
 
   changeWord() {
     this.fetchData('/data.json');
+  }
+
+  get colors() {
+    return !this._colors ;
+  }
+
+
+
+  set colors (value) {
+   console.log(value)
+    if (value) { 
+      this._colors = true;
+      this.keyboard.addColors()
+    } else {
+      this._colors = false;
+      this.keyboard.removeColors()
+    }
   }
 
   checkKeyDown(keyName) {

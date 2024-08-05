@@ -1,4 +1,4 @@
-import { createElement } from "./helpers.js";
+import { createElement, getColor } from "./helpers.js";
 import { rusKeys } from "./key-config.js";
 import Key from "./Key.js";
 
@@ -9,9 +9,23 @@ export default class Keyboard {
     this.render();
   }
 
+  addColors() {
+    this.keys.forEach(keyObj => {
+      getColor(keyObj.keyButton, keyObj.finger + "");
+    })
+  }
+
+   removeColors() {
+    this.keys.forEach(keysObj => {
+      keysObj.keyButton.classList.remove("orange", "violet", "green", "orange", "blue", "yelow", "light-gray" );
+    })
+   }
+
   render() {
     this.board = createElement("div", "keyboard-container", "fade");
     setTimeout(() => this.board.classList.remove("fade"), 200);
+
+    
     
     // const rusKeysKeys = (rusKeys.map(obj => Object.keys(obj)[0]));
 

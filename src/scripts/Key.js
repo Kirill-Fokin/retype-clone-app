@@ -40,7 +40,7 @@ class Key {
     this.color = (this.data[key]).color;
     this.size = (this.data[key]).size;
 
-    getColor(this.keyButton, this.finger + '');
+    // getColor(this.keyButton, this.finger + "");
     // object destruction
     // this.container.keys.push([keyButton, this.finger, this.color, this.size, text])
 
