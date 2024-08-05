@@ -10,6 +10,8 @@ class App {
     level = "1",
     languagePack= "rus",
     _isFocus = "false",
+    _speed = null,
+    _mistakes = null,
   ) {  
     this.textPanel = new TextPanel(document.querySelector(".app"), this);
     this.fetchData("/data.json");

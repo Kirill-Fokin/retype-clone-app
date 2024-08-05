@@ -8,6 +8,7 @@ export default class TextPanel {
 
     this.initPanel();
     this.textInp.addEventListener('input', () => this.checkLetter());
+    this.textInp.addEventListener('click', () => this.highlightMistake());
   }
 
   checkLetter() {
@@ -17,6 +18,7 @@ export default class TextPanel {
 
       setTimeout(() => {
         const currenValue = this.textInp.value;
+        this.highlightMistake() 
         this.textInp.value = currenValue.slice(0, -1);
       }, 200)
     } else {
@@ -54,6 +56,14 @@ export default class TextPanel {
 
   clear() {
    this.textInp.value = '';
+  }
+
+  highlightMistake() {
+    this.sentence.style.color = "red";
+    this.textInp.style.backgroundColor = "yellow";
+    setTimeout(() => this.textInp.style.backgroundColor = "unset", 200);
+    setTimeout(() => this.sentence.style.color = "white", 200);
+    
   }
 
   updateData(data) {

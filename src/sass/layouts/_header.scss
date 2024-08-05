@@ -1,11 +1,10 @@
 .header { 
+  border-bottom: 1px solid rgb(53, 52, 52);
   padding-top: 2rem;
   height: 10rem;
-  // border-bottom: 1px solid black;
   display: flex;
   justify-content: space-between;
   .settings {
-    // border: 2px solid black;
     width: 25rem;
     position: relative;
     &__text {
