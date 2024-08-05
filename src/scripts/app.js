@@ -18,12 +18,19 @@ class App {
     this.keysConfig = keysConfig;
     this.keyboard = new Keyboard(document.querySelector(".app"));
     this.keys = [];
-    document.addEventListener("keydown", e => {
+    // document.addEventListener("keydown", e => {
 
-     Key.defineKey(e, this);
-      // make parametr isActive that reacts on input focus
-    });
+    //  Key.defineKey(e, this);
+    //   // make parametr isActive that reacts on input focus
+    // });
 
+    document.addEventListener("keypress", e => {
+      console.log(e);
+      Key.defineKey(e, this);
+     });
+
+
+       
    window.addEventListener("beforeunload", () => {  
       console.log('sended');
       setLocalStorage  ("safe", JSON.stringify({data : "kek"}));
@@ -44,7 +51,7 @@ class App {
   }
 
   checkKeyDown(keyName) {
-    console.log(this)
+
    this.keyboard.keys.forEach( keyObj => {
     console.log(keyName.toUpperCase())
       if(keyObj.text.toUpperCase() === keyName.toUpperCase()) {

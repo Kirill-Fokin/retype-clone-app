@@ -10,6 +10,7 @@ class Key {
   }    
 
   static defineKey(event, parent) {
+    console.log(event.key);
     switch (event.key) {
       case " ":
       parent.checkKeyDown('WHITESPACE');
