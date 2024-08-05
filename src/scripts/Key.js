@@ -1,4 +1,5 @@
-import { createElement } from "./helpers.js";
+import { createElement, getColor } from "./helpers.js";
+
 
 class Key {
   constructor(container, keyData) {
@@ -28,6 +29,8 @@ class Key {
   render() {
     this.keyButton = createElement('div', 'key');
 
+    
+
     this.text = (Object.keys(this.data)[0]);
     this.keyButton.textContent = this.text;
 
@@ -37,6 +40,7 @@ class Key {
     this.color = (this.data[key]).color;
     this.size = (this.data[key]).size;
 
+    getColor(this.keyButton, this.finger + '');
     // object destruction
     // this.container.keys.push([keyButton, this.finger, this.color, this.size, text])
 

@@ -11,5 +11,31 @@
     width: 4.2rem;
     height: 4.2rem;
     transition: all 1s ;
-   user-select: none; 
+   user-select: none;
+   transition: all 1s; 
+}
+
+.violet {
+  background-color: violet;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color:green ;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.yelow {
+  background-color:rgb(215, 243, 1) ;
+  color: black;
+}
+
+.light-gray {
+  background-color: rgb(208, 208, 208);
 }
