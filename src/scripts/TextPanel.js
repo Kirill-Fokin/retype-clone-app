@@ -13,7 +13,6 @@ export default class TextPanel {
 
   checkLetter() {
     const lastInpLetter =  this.textInp.value.slice(-1);
-    // добавить поддержку пробела
     if (lastInpLetter !==  this.nextLetter) {
 
       setTimeout(() => {

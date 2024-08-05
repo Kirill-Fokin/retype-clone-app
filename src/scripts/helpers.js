@@ -4,44 +4,37 @@ const getRandomNumber = (min, max) => {
   return Math.floor(rand);
 }
 
-
 const getColor = (elem, finger) => {
-   console.log('work')
-    switch (finger) {
-      case "1":
-      elem.classList.add('violet');
-      break;
-      case "2":
-        elem.classList.add('blue')
-      break;
-      case "3":
-        elem.classList.add('green')
-      break;
-      case "4":
-        elem.classList.add('orange')
-      break;
-      case "5":
-        elem.classList.add('yelow')
-      break;
-      case "6":
-        elem.classList.add('green')
-      break;
-      case "7":
-        elem.classList.add('blue')
-      break;
-      case "8":
-        elem.classList.add('violet')
-      break;
-      case "10":
-        elem.classList.add('light-gray')
-      break;
-    }
+  switch (finger) {
+    case "1":
+    elem.classList.add('violet');
+    break;
+    case "2":
+      elem.classList.add('blue')
+    break;
+    case "3":
+      elem.classList.add('green')
+    break;
+    case "4":
+      elem.classList.add('orange')
+    break;
+    case "5":
+      elem.classList.add('yelow')
+    break;
+    case "6":
+      elem.classList.add('green')
+    break;
+    case "7":
+      elem.classList.add('blue')
+    break;
+    case "8":
+      elem.classList.add('violet')
+    break;
+    case "10":
+      elem.classList.add('light-gray')
+    break;
+  }
 }
-
-
-
-
-
 
 const createElement = (tagName, ...classNames) => {
     const element = document.createElement(tagName);
@@ -63,6 +56,5 @@ export {
     setLocalStorage, 
     getLocalStorage,
     getColor
-
 };
   

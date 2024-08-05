@@ -7,40 +7,33 @@ class App {
 
   constructor (
     keysConfig, 
-    level = "1",
-    languagePack= "rus",
     _isFocus = "false",
     _speed = null,
     _mistakes = null,
     _colors = false,
     _isKeyboard = true,
-  ) {  
-    this.textPanel = new TextPanel(document.querySelector(".app"), this);
-    this.fetchData("/data.json");
-    this.keysConfig = keysConfig;
-    this.keyboard = new Keyboard(document.querySelector(".app"));
-    this.keys = [];
-
-    this.colorButton = document.querySelector(".paint")
-    this.boardButton = document.querySelector(".keyboard-add")
-
-    this.boardButton.addEventListener('click', () => this.isKeyboard = this.isKeyboard)
-    this.colorButton.addEventListener('click', () => this.colors = this.colors)
-    
-    this.textPanel.textPanel.append(document.querySelector(".additional-settings"));
-    document.addEventListener("keypress", e => {
-      console.log(e);
-      Key.defineKey(e, this);
-     });
-
-
-       
-   window.addEventListener("beforeunload", () => {  
-      console.log('sended');
-      setLocalStorage  ("safe", JSON.stringify({data : "kek"}));
-     // отправка состояния игры
-  });
-  }
+  ) {
+      this.keysConfig = keysConfig;  
+      this.textPanel = new TextPanel(document.querySelector(".app"), this);
+      this.keyboard = new Keyboard(document.querySelector(".app"));
+      this.fetchData("/data.json");
+      this.textPanel.textPanel.append(document.querySelector(".additional-settings"));
+      // buttons
+      this.colorButton = document.querySelector(".paint")
+      this.boardButton = document.querySelector(".keyboard-add")
+  
+      // listeners
+      this.boardButton.addEventListener('click', () => this.isKeyboard = this.isKeyboard)
+      this.colorButton.addEventListener('click', () => this.colors = this.colors)
+      document.addEventListener("keypress", e => {
+        console.log(e);
+        Key.defineKey(e, this);
+       });
+         
+       window.addEventListener("beforeunload", () => {  
+        setLocalStorage  ("safe", JSON.stringify({data : "kek"}));
+      });
+    }
 
 
   set isKeyboard (value) {
@@ -59,11 +52,11 @@ class App {
   
   set isFocus(value) {
      value == true ? this.keyboard.board.classList.remove('none') : this.keyboard.board.classList.add('none');
-   }
+  }
 
-   get isFocus() {
+  get isFocus() {
      return _isFocus;
-   }
+  }
 
   changeWord() {
     this.fetchData('/data.json');
@@ -72,8 +65,6 @@ class App {
   get colors() {
     return !this._colors ;
   }
-
-
 
   set colors (value) {
    console.log(value)
