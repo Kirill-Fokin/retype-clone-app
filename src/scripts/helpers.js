@@ -52,16 +52,30 @@ const createElement = (tagName, ...classNames) => {
 
   const getSimpleAnimated = ( (elem, style, speed )=> {
     elem.classList.add(style);
-    console.log(elem, style)
     setTimeout(() =>  elem.classList.remove(style), speed);
   }); 
 
+  async function fetchData (dataUrl) {
+    
+    fetch(dataUrl)
+     .then(response => {
+      
+       if (!response.ok) {         
+         throw new Error('Ошибка в fetch' + response.status.Text);
+       }
+
+       return response.json();
+     });
+    }
+    
+
 export {
-    getRandomNumber, 
-    createElement, 
-    setLocalStorage, 
-    getLocalStorage,
-    getColor,
-    getSimpleAnimated
+  getRandomNumber, 
+  createElement, 
+  setLocalStorage, 
+  getLocalStorage,
+  getColor,
+  getSimpleAnimated, 
+  fetchData
 };
-  
+

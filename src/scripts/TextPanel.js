@@ -22,11 +22,7 @@ export default class TextPanel {
       }, 200)
     } else {
       if (this.sentence.textContent.length === 1) {
-        this.sentence.textContent = ''
-        this.parent.changeWord();
-        this.subTextChecked.textContent = '';
-        this.textInp.value = '';
-        getSimpleAnimated(this.textInp, "green", 200) 
+       this.clear();
       } else {
         this.changeLetter() 
       }
@@ -62,7 +58,11 @@ export default class TextPanel {
   }
 
   clear() {
-   this.textInp.value = '';
+    this.sentence.textContent = ''
+    this.parent.changeWord();
+    this.subTextChecked.textContent = '';
+    this.textInp.value = '';
+    getSimpleAnimated(this.textInp, "green", 200) 
   }
 
   highlightMistake() {

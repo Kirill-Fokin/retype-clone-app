@@ -33,6 +33,12 @@ class Key {
 
     const key = Object.keys(this.data)[0];    
 
+    const hand = createElement('div', 'hand', 'hand1')
+
+    if ( this.text == 'П') {
+      this.keyButton.append(hand)
+    }
+
     this.finger = (this.data[key]).finger;
     this.color = (this.data[key]).color;
     this.size = (this.data[key]).size;

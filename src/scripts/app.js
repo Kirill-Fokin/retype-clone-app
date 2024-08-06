@@ -1,4 +1,4 @@
-import { createElement, setLocalStorage } from "./helpers.js";
+import { createElement, fetchData, setLocalStorage } from "./helpers.js";
 import Keyboard from "./keyboard.js";
 import TextPanel from "./TextPanel.js";
 import Key from "./Key.js";
@@ -16,19 +16,50 @@ class App {
       this.keysConfig = keysConfig;  
       this.textPanel = new TextPanel(document.querySelector(".app"), this);
       this.keyboard = new Keyboard(document.querySelector(".app"));
-      this.fetchData("/data.json");
+      // this.fetchData("/data.json");
+
+      
+     
+      //  fetchData("/data.json").then(jsonData => {
+      //     this.textPanel.updateData(jsonData);
+      //   });
+
+
+      fetch("/data.json")
+     .then(response => {
+      
+       if (!response.ok) {         
+         throw new Error('Ошибка в fetch' + response.status.Text);
+       }
+
+       return response.json();
+     }).then(
+      jsonData => {
+        this.textPanel.updateData(jsonData);
+
+      }
+     );
+
+
+    
       this.textPanel.textPanel.append(document.querySelector(".additional-settings"));
       // buttons
       this.colorButton = document.querySelector(".paint")
       this.boardButton = document.querySelector(".keyboard-add")
+      this.refreshButton =  document.querySelector('.refresh__image');
+
   
+      // fetchthis.textPanel.updateData(jsonData);
       // listeners
       this.boardButton.addEventListener('click', () => this.isKeyboard = this.isKeyboard)
       this.colorButton.addEventListener('click', () => this.colors = this.colors)
       document.addEventListener("keypress", e => {
-        console.log(e);
         Key.defineKey(e, this);
        });
+
+       this.refreshButton.addEventListener("click", () => this.textPanel.clear());
+
+       
          
        window.addEventListener("beforeunload", () => {  
         setLocalStorage  ("safe", JSON.stringify({data : "kek"}));
@@ -59,7 +90,20 @@ class App {
   }
 
   changeWord() {
-    this.fetchData('/data.json');
+    fetch("/data.json")
+    .then(response => {
+     
+      if (!response.ok) {         
+        throw new Error('Ошибка в fetch' + response.status.Text);
+      }
+
+      return response.json();
+    }).then(
+     jsonData => {
+       this.textPanel.updateData(jsonData);
+
+     }
+    );
   }
 
   get colors() {
@@ -87,20 +131,23 @@ class App {
    });
   }
 
-  fetchData(dataUrl) {
+  // fetchData(dataUrl) {
     
-  fetch(dataUrl)
-   .then(response => {
+  // fetch(dataUrl)
+  //  .then(response => {
 
-     if (!response.ok) {
-       throw new Error('Ошибка в fetch' + response.status.Text);
-     }
-     return response.json();
-   })
-     .then(jsonData => {
-      this.textPanel.updateData(jsonData);
-    });
-  }
+  //    if (!response.ok) {
+  //      throw new Error('Ошибка в fetch' + response.status.Text);
+  //    }
+  //    return response.json();
+  //  })
+  //    .then(jsonData => {
+  //     this.textPanel.updateData(jsonData);
+  //   });
+  // }
+
+  
+    
 }
 
 export default App;
