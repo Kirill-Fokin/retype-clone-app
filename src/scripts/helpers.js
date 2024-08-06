@@ -63,7 +63,6 @@ const createElement = (tagName, ...classNames) => {
        if (!response.ok) {         
          throw new Error('Ошибка в fetch' + response.status.Text);
        }
-
        return response.json();
      });
     }

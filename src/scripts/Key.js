@@ -5,13 +5,11 @@ class Key {
   constructor(container, keyData) {
     this.container = container;
     this.data = keyData;
-
     this.render()
     // ToDo: addaudio
-  }   
+  } 
 
   static defineKey(event, parent) {
-    console.log(event.key);
     switch (event.key) {
       case " ":
       parent.checkKeyDown('WHITESPACE');
@@ -32,12 +30,8 @@ class Key {
     this.keyButton.textContent = this.text;
 
     const key = Object.keys(this.data)[0];    
-
     const hand = createElement('div', 'hand', 'hand1')
-
-    if ( this.text == 'П') {
-      this.keyButton.append(hand)
-    }
+    this.keyButton.append(hand);
 
     this.finger = (this.data[key]).finger;
     this.color = (this.data[key]).color;
@@ -53,6 +47,7 @@ class Key {
   highLightCorrect() {
     this.keyButton.classList.add('green');
     setTimeout(() => this.keyButton.classList.remove('green'), 500);
+    this.container.setUpHand()
   }
 }
 

@@ -12,14 +12,9 @@ class App {
     _mistakes = null,
     _colors = false,
     _isKeyboard = true,
-
-    _letters = 0
   ) {
       this.keysConfig = keysConfig;  
       this.textPanel = new TextPanel(document.querySelector(".app"), this);
-      this.keyboard = new Keyboard(document.querySelector(".app"));
-      this.textPanel.textPanel.append(document.querySelector(".additional-settings"));
-      this.settingButton = document.querySelector('.settings-button');
 
       fetch("/data.json")
         .then(response => {
@@ -31,6 +26,10 @@ class App {
              jsonData => {
                this.textPanel.updateData(jsonData);
              });
+      
+      this.keyboard = new Keyboard(document.querySelector(".app"));
+      this.textPanel.textPanel.append(document.querySelector(".additional-settings"));
+      this.settingButton = document.querySelector('.settings-button');      
       // buttons
       this.colorButton = document.querySelector(".paint")
       this.boardButton = document.querySelector(".keyboard-add")
@@ -42,16 +41,15 @@ class App {
       this.colorButton.addEventListener('click', () => this.colors = this.colors)
       document.addEventListener("keypress", e => {
         Key.defineKey(e, this);
-       });
+      });
       this.refreshButton.addEventListener("click", () => this.textPanel.clear());
       window.addEventListener("beforeunload", () => {  
         setLocalStorage  ("safe", JSON.stringify({data : "kek"}));
       });
       this.settingButton.addEventListener("click", () => document.querySelector(".settings").classList.remove("fade-out"))
       this.closeButton.addEventListener('click', () =>   document.querySelector(".settings").classList.add("fade-out"))
+      document.querySelectorAll('.setting__subitem')[1].addEventListener('click', () => this.changeWord(true)) 
     }
-
-      
 
   set isKeyboard (value) {
     if (value) {
@@ -81,14 +79,11 @@ class App {
     }
   }
 
-   
-  
-
   get isFocus() {
     return this._isFocus;
   }
 
-  changeWord() {
+  changeWord(changeLevel) {
     fetch("/data.json")
     .then(response => {
      
@@ -98,7 +93,7 @@ class App {
       return response.json();
     }).then(
       jsonData => {
-       this.textPanel.updateData(jsonData);
+       this.textPanel.updateData(jsonData, changeLevel);
      });
   }
 
@@ -107,6 +102,7 @@ class App {
   }
 
   set colors (value) {
+    console.log('paint')
     if (value) { 
       this._colors = true;
       this.keyboard.addColors()
@@ -117,15 +113,13 @@ class App {
   }
 
   checkKeyDown(keyName) {
-   this.keyboard.keys.forEach( keyObj => {
+   this.keyboard.keys.forEach(keyObj => {
       if(keyObj.text.toUpperCase() === keyName.toUpperCase()) {
         keyObj.highLightCorrect();
+        keyObj.press()
       } 
    });
   }
-
-
-  
 }
 
 export default App;
