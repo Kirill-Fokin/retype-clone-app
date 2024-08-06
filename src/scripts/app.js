@@ -12,6 +12,8 @@ class App {
     _mistakes = null,
     _colors = false,
     _isKeyboard = true,
+
+    _letters = 0
   ) {
       this.keysConfig = keysConfig;  
       this.textPanel = new TextPanel(document.querySelector(".app"), this);
@@ -79,9 +81,9 @@ class App {
     }
   }
 
-
+   
   
-п
+
   get isFocus() {
     return this._isFocus;
   }

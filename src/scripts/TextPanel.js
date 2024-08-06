@@ -5,16 +5,24 @@ export default class TextPanel {
     this.container = container;
     this.parent = parent;
     this.nextLetter = null;
-
+    this.letters = 0;
+    this.failures = 0;
     this.initPanel();
+    this._errors = 0;
+    this._pressedSymbols = 0;
+    
+
     this.textInp.addEventListener('input', () => this.checkLetter());
     this.textInp.addEventListener('click', () => this.highlightMistake());
   }
 
   checkLetter() {
+    this._pressedSymbols++;
+    
     const lastInpLetter =  this.textInp.value.slice(-1);
     if (lastInpLetter !==  this.nextLetter) {
-
+      this._errors++
+       
       setTimeout(() => {
         const currenValue = this.textInp.value;
         this.highlightMistake() 
@@ -27,10 +35,23 @@ export default class TextPanel {
         this.changeLetter() 
       }
     }
+
+    document.querySelector(".err-text").textContent =  this.errPercent;
   }
 
 
   
+  set errPercent(val) {
+    this._errors = 0;
+    this._pressedSymbols = 0;
+
+  }
+
+
+  get errPercent() {
+    console.log(this._errors, this._pressedSymbols);
+    return Math.round(this._errors * (100 / this._pressedSymbols));
+  }
 
   changeLetter() {
     const firstSubtextLetter = this.sentence.textContent[0];
