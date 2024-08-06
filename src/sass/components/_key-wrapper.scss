@@ -9,6 +9,10 @@
     align-items: center;
     opacity: 1;
     transition: all 1s ease-in-out;
+
+   &.blur {
+    opacity: 0.1;
+   }
 }
 
 

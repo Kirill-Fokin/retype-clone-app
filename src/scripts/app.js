@@ -16,65 +16,49 @@ class App {
       this.keysConfig = keysConfig;  
       this.textPanel = new TextPanel(document.querySelector(".app"), this);
       this.keyboard = new Keyboard(document.querySelector(".app"));
-      // this.fetchData("/data.json");
-
-      
-     
-      //  fetchData("/data.json").then(jsonData => {
-      //     this.textPanel.updateData(jsonData);
-      //   });
-
+      this.textPanel.textPanel.append(document.querySelector(".additional-settings"));
+      this.settingButton = document.querySelector('.settings-button');
 
       fetch("/data.json")
-     .then(response => {
-      
-       if (!response.ok) {         
-         throw new Error('Ошибка в fetch' + response.status.Text);
-       }
-
-       return response.json();
-     }).then(
-      jsonData => {
-        this.textPanel.updateData(jsonData);
-
-      }
-     );
-
-
-    
-      this.textPanel.textPanel.append(document.querySelector(".additional-settings"));
+        .then(response => {
+          if (!response.ok) {         
+            throw new Error('Ошибка в fetch' + response.status.Text);
+          }
+          return response.json();
+          }).then(
+             jsonData => {
+               this.textPanel.updateData(jsonData);
+             });
       // buttons
       this.colorButton = document.querySelector(".paint")
       this.boardButton = document.querySelector(".keyboard-add")
       this.refreshButton =  document.querySelector('.refresh__image');
-
-  
-      // fetchthis.textPanel.updateData(jsonData);
+      this.closeButton = document.querySelector(".close-button")
       // listeners
+      document.querySelector('.checkbox__inp').addEventListener("click", () => this.isFocus = !this.isFocus) 
       this.boardButton.addEventListener('click', () => this.isKeyboard = this.isKeyboard)
       this.colorButton.addEventListener('click', () => this.colors = this.colors)
       document.addEventListener("keypress", e => {
         Key.defineKey(e, this);
        });
-
-       this.refreshButton.addEventListener("click", () => this.textPanel.clear());
-
-       
-         
-       window.addEventListener("beforeunload", () => {  
+      this.refreshButton.addEventListener("click", () => this.textPanel.clear());
+      window.addEventListener("beforeunload", () => {  
         setLocalStorage  ("safe", JSON.stringify({data : "kek"}));
       });
+      this.settingButton.addEventListener("click", () => document.querySelector(".settings").classList.remove("fade-out"))
+      this.closeButton.addEventListener('click', () =>   document.querySelector(".settings").classList.add("fade-out"))
     }
 
+      
 
   set isKeyboard (value) {
-     if (value) {
+    if (value) {
       this._isKeyboard = true;
       this.keyboard.board.classList.add('none')
-     } else {
+    } else {
       this._isKeyboard = false;
       this.keyboard.board.classList.remove('none')
-     }
+    }
   }
 
   get isKeyboard() {
@@ -82,11 +66,24 @@ class App {
   }
   
   set isFocus(value) {
-     value == true ? this.keyboard.board.classList.remove('none') : this.keyboard.board.classList.add('none');
+    if (value) {
+      this._isFocus = value;
+      document.querySelector(".header").classList.add("blur");
+      this.keyboard.board.classList.add("blur");
+      
+    } else {
+      this._isFocus = value;
+      this.keyboard.board.classList.remove("blur");
+      document.querySelector(".header").classList.remove("blur");
+      
+    }
   }
 
+
+  
+п
   get isFocus() {
-     return _isFocus;
+    return this._isFocus;
   }
 
   changeWord() {
@@ -96,14 +93,11 @@ class App {
       if (!response.ok) {         
         throw new Error('Ошибка в fetch' + response.status.Text);
       }
-
       return response.json();
     }).then(
-     jsonData => {
+      jsonData => {
        this.textPanel.updateData(jsonData);
-
-     }
-    );
+     });
   }
 
   get colors() {
@@ -111,7 +105,6 @@ class App {
   }
 
   set colors (value) {
-   console.log(value)
     if (value) { 
       this._colors = true;
       this.keyboard.addColors()
@@ -122,32 +115,15 @@ class App {
   }
 
   checkKeyDown(keyName) {
-
    this.keyboard.keys.forEach( keyObj => {
-    console.log(keyName.toUpperCase())
       if(keyObj.text.toUpperCase() === keyName.toUpperCase()) {
         keyObj.highLightCorrect();
       } 
    });
   }
 
-  // fetchData(dataUrl) {
-    
-  // fetch(dataUrl)
-  //  .then(response => {
-
-  //    if (!response.ok) {
-  //      throw new Error('Ошибка в fetch' + response.status.Text);
-  //    }
-  //    return response.json();
-  //  })
-  //    .then(jsonData => {
-  //     this.textPanel.updateData(jsonData);
-  //   });
-  // }
 
   
-    
 }
 
 export default App;
