@@ -33,7 +33,7 @@ export default class TextPanel {
         this.changeLetter() 
       }
     }
-    document.querySelector(".err-text").textContent =  this.errPercent;
+    document.querySelector(".err-text").textContent =  this.errPercent + '%';
   }
   
   set errPercent(val) {
@@ -42,7 +42,7 @@ export default class TextPanel {
   }
 
   get errPercent() {
-    return Math.round(this._errors * (100 / this._pressedSymbols));
+    return Math.ceil(this._errors * (100 / this._pressedSymbols));
   }
 
   changeLetter() {

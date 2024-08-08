@@ -1,5 +1,5 @@
 import { createElement, fetchData, setLocalStorage } from "./helpers.js";
-import Keyboard from "./keyboard.js";
+import Keyboard from "./Keyboard.js";
 import TextPanel from "./TextPanel.js";
 import Key from "./Key.js";
 
