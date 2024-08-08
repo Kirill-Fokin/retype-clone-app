@@ -1,12 +1,15 @@
 import { createElement, getColor } from "./helpers.js";
 
 
+
 class Key {
   constructor(container, keyData) {
     this.container = container;
     this.data = keyData;
     this.render()
-    // ToDo: addaudio
+    this.keySound = this.text !== 'Whitespace' ?  
+      new Audio('src/assets/sound/key-sound.mp3') : new Audio('src/assets/sound/space.mp3');
+      // console.log(this.keySound);
   } 
 
   static defineKey(event, parent) {
@@ -45,9 +48,20 @@ class Key {
   }
 
   highLightCorrect() {
+    console.log(this.container.parent.mute)
+
     this.keyButton.classList.add('green');
     setTimeout(() => this.keyButton.classList.remove('green'), 500);
-    this.container.setUpHand()
+
+   
+    if (this.container.parent.mute === false) {
+      this.keySound.play();
+    }
+
+   
+
+
+    // this.container.setUpHand()
   }
 }
 

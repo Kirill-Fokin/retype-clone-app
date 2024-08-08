@@ -66,7 +66,6 @@ const createElement = (tagName, ...classNames) => {
        return response.json();
      });
     }
-    
 
 export {
   getRandomNumber, 

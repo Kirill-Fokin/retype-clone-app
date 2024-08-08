@@ -65,6 +65,7 @@ export default class TextPanel {
     this.textPanel.prepend(this.textInp,  this.subText);
     this.sentence = createElement("span", "sentence");
     this.subText.append(this.subTextChecked, this.sentence);
+    this.textPanel.append(document.querySelector(".additional-settings"));
   }
 
   clear() {

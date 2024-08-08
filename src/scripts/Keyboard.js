@@ -1,16 +1,18 @@
 import { createElement, getColor } from "./helpers.js";
-import { rusKeys } from "./key-config.js";
+// import { rusKeys } from "./key-config.js";
 import Key from "./Key.js";
 
 export default class Keyboard {
-  constructor(container) {
+  constructor(container , keysConfig, parent) {
+    console.log(container)
     this.container = container;
-    this.keys = [];
-    this.render();
+    this.parent = parent;
+    this.keysConfig = keysConfig;
+    this.prev = null;
     this.counter = 0;
-    
-    setTimeout(() => this.setUpHand(), 500);
-    
+    this.keys = [];
+
+    this.render();
   }
 
   addColors() {
@@ -27,7 +29,7 @@ export default class Keyboard {
     let num;
     // сверху костыль
     num = this.counter == 0 ? 0 : 1
-    const litera = document.querySelector('.sentence').textContent[ num]
+    const litera = document.querySelector('.sentence').textContent[num]
 
     this.keys.forEach(el => {
        if (el.text == litera.toUpperCase()) {
@@ -46,11 +48,18 @@ export default class Keyboard {
    }
 
   render() {
+    if (document.querySelector(".keyboard-container") !== null) {
+      document.querySelector(".keyboard-container").remove();
+      this.counter = 0;
+      this.keys.length = 0;
+      this.prev = null;
+    }
+
     this.board = createElement("div", "keyboard-container", "fade");
     setTimeout(() => this.board.classList.remove("fade"), 200);
 
-    for (let i = 0; i < rusKeys.length; i++) {
-      const key = new Key(this, rusKeys[i]);
+    for (let i = 0; i < this.keysConfig.length; i++) {
+      const key = new Key(this, this.keysConfig[i]);
       this.keys.push(key);
     }    
     this.container.append(this.board);

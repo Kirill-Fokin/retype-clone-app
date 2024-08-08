@@ -2,20 +2,25 @@ import { createElement, fetchData, setLocalStorage } from "./helpers.js";
 import Keyboard from "./Keyboard.js";
 import TextPanel from "./TextPanel.js";
 import Key from "./Key.js";
+import { rusKeys, engKeys} from "./key-config.js";
 
 class App {
 
   constructor (
-    keysConfig, 
+    keysConfig = rusKeys, 
     _isFocus = "false",
     _speed = null,
     _mistakes = null,
     _colors = false,
     _isKeyboard = true,
+    _mute = false
+    
   ) {
       this.keysConfig = keysConfig;  
       this.textPanel = new TextPanel(document.querySelector(".app"), this);
 
+      this.mute = false;
+      
       fetch("/data.json")
         .then(response => {
           if (!response.ok) {         
@@ -27,37 +32,48 @@ class App {
                this.textPanel.updateData(jsonData);
              });
       
-      this.keyboard = new Keyboard(document.querySelector(".app"));
-      this.textPanel.textPanel.append(document.querySelector(".additional-settings"));
+      this.keyboard = new Keyboard(document.querySelector(".app"), this.keysConfig, this);
+
+      this.render();
+      this.addListeners()
+    }
+
+    set mute (value) {
+      this._mute = value;
+    }
+
+    get mute () {
+      return this._mute;
+    }
+
+    render() {
       this.settingButton = document.querySelector('.settings-button');      
-      // buttons
       this.colorButton = document.querySelector(".paint")
       this.boardButton = document.querySelector(".keyboard-add")
       this.refreshButton =  document.querySelector('.refresh__image');
       this.closeButton = document.querySelector(".close-button")
-      // listeners
-      document.querySelector('.checkbox__inp').addEventListener("click", () => this.isFocus = !this.isFocus) 
-      this.boardButton.addEventListener('click', () => this.isKeyboard = this.isKeyboard)
-      this.colorButton.addEventListener('click', () => this.colors = this.colors)
-      document.addEventListener("keypress", e => {
-        Key.defineKey(e, this);
-      });
+    }
+
+    addListeners() {
+      document.querySelector(".sound").addEventListener("click", () => this.mute = !this.mute)
+      document.querySelector('.checkbox__inp').addEventListener("click", () => this.isFocus = !this.isFocus);
+      this.boardButton.addEventListener('click', () => this.isKeyboard = this.isKeyboard);
+      this.colorButton.addEventListener('click', () => this.colors = this.colors);
+      document.addEventListener("keypress", e => Key.defineKey(e, this));
       this.refreshButton.addEventListener("click", () => this.textPanel.clear());
-      window.addEventListener("beforeunload", () => {  
-        setLocalStorage  ("safe", JSON.stringify({data : "kek"}));
-      });
-      this.settingButton.addEventListener("click", () => document.querySelector(".settings").classList.remove("fade-out"))
-      this.closeButton.addEventListener('click', () =>   document.querySelector(".settings").classList.add("fade-out"))
-      document.querySelectorAll('.setting__subitem')[1].addEventListener('click', () => this.changeWord(true)) 
+      window.addEventListener("beforeunload", () => setLocalStorage  ("safe", JSON.stringify({data : "kek"})));
+      this.settingButton.addEventListener("click", () => document.querySelector(".settings").classList.remove("fade-out"));
+      this.closeButton.addEventListener('click', () =>   document.querySelector(".settings").classList.add("fade-out"));
+      document.querySelectorAll('.setting__subitem')[1].addEventListener('click', () => this.changeWord(true));
     }
 
   set isKeyboard (value) {
     if (value) {
       this._isKeyboard = true;
-      this.keyboard.board.classList.add('none')
+      this.keyboard.board.classList.add('none');
     } else {
       this._isKeyboard = false;
-      this.keyboard.board.classList.remove('none')
+      this.keyboard.board.classList.remove('none');
     }
   }
 
@@ -75,7 +91,6 @@ class App {
       this._isFocus = value;
       this.keyboard.board.classList.remove("blur");
       document.querySelector(".header").classList.remove("blur");
-      
     }
   }
 
@@ -93,8 +108,8 @@ class App {
       return response.json();
     }).then(
       jsonData => {
-       this.textPanel.updateData(jsonData, changeLevel);
-     });
+        this.textPanel.updateData(jsonData, changeLevel);
+      });
   }
 
   get colors() {
@@ -102,7 +117,6 @@ class App {
   }
 
   set colors (value) {
-    console.log('paint')
     if (value) { 
       this._colors = true;
       this.keyboard.addColors()
@@ -116,7 +130,6 @@ class App {
    this.keyboard.keys.forEach(keyObj => {
       if(keyObj.text.toUpperCase() === keyName.toUpperCase()) {
         keyObj.highLightCorrect();
-        keyObj.press()
       } 
    });
   }
