@@ -11,6 +11,7 @@ export default class Keyboard {
     this.prev = null;
     this.counter = 0;
     this.keys = [];
+    console.log(this)
 
     this.render();
   }
@@ -22,23 +23,15 @@ export default class Keyboard {
   }
 
   setUpHand() {
-    if (this.prev) {
-      this.prev.classList.remove("pressed");
-    }
-
-    let num;
-    // сверху костыль
-    num = this.counter == 0 ? 0 : 1
-    const litera = document.querySelector('.sentence').textContent[num]
-
-    this.keys.forEach(el => {
-       if (el.text == litera.toUpperCase()) {
-        console.log(el)
-         el.keyButton.classList.add('pressed')
-         this.prev = el.keyButton;
-       }
+    let sentence = document.querySelector('.sentence').textContent
+    console.log(sentence[0])
+    this.keys.filter((el) => { 
+      if (el.text.toUpperCase()=== sentence[0].toUpperCase()|| (el.text === "Whitespace" && sentence[0] === ' ' )) {
+        el.openHand()
+      }
     })
-    this.counter++;
+   
+
   }
 
    removeColors() {

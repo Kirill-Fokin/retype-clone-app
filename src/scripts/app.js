@@ -35,6 +35,8 @@ class App {
              });
       
       this.keyboard = new Keyboard(document.querySelector(".app"), this.keysConfig, this);
+
+      
       
       this.render();
       this.addListeners()
@@ -108,7 +110,7 @@ class App {
   }
 
   changeWord(level) {
-    console.log(level)
+
     if (level === 'sentence') {
       
       this.level = "sentence"

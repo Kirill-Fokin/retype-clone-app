@@ -27,14 +27,33 @@ class Key {
     }
   }
 
+  remove() {
+    this.hand.classList.remove('pressed')
+  }
+
+
+  openHand () {
+    if (this.container.prev) {
+      this.container.prev.remove('pressed');
+    }
+    this.container.prev = this
+
+    this.hand.classList.add("pressed");
+
+    console.log(this)
+  }
+
+ 
+
+
   render() {
     this.keyButton = createElement('div', 'key');
     this.text = (Object.keys(this.data)[0]);
     this.keyButton.textContent = this.text;
 
     const key = Object.keys(this.data)[0];    
-    const hand = createElement('div', 'hand', 'hand1')
-    this.keyButton.append(hand);
+    this.hand = createElement('div', 'hand', 'hand1')
+    this.keyButton.append(this.hand);
 
     this.finger = (this.data[key]).finger;
     this.color = (this.data[key]).color;

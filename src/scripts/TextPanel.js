@@ -58,7 +58,6 @@ export default class TextPanel {
         this.changeLetter() 
       }
     }
-    console.log('доходит', this.errPercent)
     document.querySelector(".err-text").textContent =  this.errPercent + '%';
   }
   
@@ -75,9 +74,6 @@ export default class TextPanel {
     return 0;
   }
 
-
-   
-
   get errPercent() {
     return Math.ceil(this._errors * (100 / this._pressedSymbols));
   }
@@ -89,6 +85,7 @@ export default class TextPanel {
     this.sentence.textContent = this.sentence.textContent.slice(1);
     this.subTextChecked.textContent  += firstSubtextLetter;
     this.nextLetter = this.sentence.textContent[0];
+    this.parent.keyboard.setUpHand()
   }
   
   initPanel() {
@@ -145,8 +142,10 @@ export default class TextPanel {
       if (this.sentence.textContent.length > 50) {
         this.sentence.textContent =  this.sentence.textContent.slice(0, this.sentence.textContent.length - word.length);
       } 
-      // this.sentence.textContent  = 
     }
       this.nextLetter = this.sentence.textContent.slice(0, 1);
+      this.parent.keyboard.setUpHand(); 
     }
+
+   
 }
