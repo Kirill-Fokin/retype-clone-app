@@ -1,4 +1,5 @@
 import { createElement, getRandomNumber, getSimpleAnimated} from "./helpers.js";
+import Stopwatch from "./stopwatch.js";
 
 export default class TextPanel {
   constructor(container, parent) {
@@ -10,9 +11,25 @@ export default class TextPanel {
     this.initPanel();
     this._errors = 0;
     this._pressedSymbols = 0;
+    this.stopWach = new Stopwatch();
+    this.stopWach.start();
 
+    this.speedText = document.querySelector(".speed-text");
+    this.speedText.textContent = 0;
+
+
+    
+    
     this.textInp.addEventListener('input', () => this.checkLetter());
     this.textInp.addEventListener('click', () => this.highlightMistake());
+  }
+
+
+  countspeedText() {
+    const time = this.stopWach.getData()
+    const symbCounter = this.lettersCounter;
+
+    return  Math.round(symbCounter / time * 60);
   }
 
   checkLetter() {
@@ -41,11 +58,23 @@ export default class TextPanel {
     this._pressedSymbols = 0;
   }
 
+  get lettersCounter() {
+    if (this._pressedSymbols ) {
+      return this._pressedSymbols - this._errors;
+    }
+    return 0;
+  }
+
+
+   
+
   get errPercent() {
     return Math.ceil(this._errors * (100 / this._pressedSymbols));
   }
 
   changeLetter() {
+    this.speedText.textContent  = this.countspeedText()
+    
     const firstSubtextLetter = this.sentence.textContent[0];
     this.sentence.textContent = this.sentence.textContent.slice(1);
     this.subTextChecked.textContent  += firstSubtextLetter;

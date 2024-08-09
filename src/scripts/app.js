@@ -3,6 +3,7 @@ import Keyboard from "./Keyboard.js";
 import TextPanel from "./TextPanel.js";
 import Key from "./Key.js";
 import { rusKeys, engKeys} from "./key-config.js";
+import Stopwatch from "./stopwatch.js";
 
 class App {
 
@@ -33,9 +34,14 @@ class App {
              });
       
       this.keyboard = new Keyboard(document.querySelector(".app"), this.keysConfig, this);
-
+      
       this.render();
       this.addListeners()
+
+      
+     
+     
+      
     }
 
     set mute (value) {
@@ -66,6 +72,9 @@ class App {
       this.closeButton.addEventListener('click', () =>   document.querySelector(".settings").classList.add("fade-out"));
       document.querySelectorAll('.setting__subitem')[1].addEventListener('click', () => this.changeWord(true));
     }
+
+
+
 
   set isKeyboard (value) {
     if (value) {
