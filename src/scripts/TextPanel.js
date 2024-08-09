@@ -10,6 +10,7 @@ export default class TextPanel {
     this.failures = 0;
     this.initPanel();
     this._errors = 0;
+    //
     this._pressedSymbols = 0;
     this.stopWach = new Stopwatch();
     this.stopWach.start();
@@ -122,11 +123,14 @@ export default class TextPanel {
     
   }
 
-  updateData(data, isChangeLevel) {
-    if (isChangeLevel) {
+  updateData(data) {
+    if (this.parent.level === "sentence") {
       const word = (data.rus2[getRandomNumber(0, data.rus2.length - 1)]);
       this.sentence.textContent = word;
-    } else {
+    } else  {
+
+      console.log('kjk')
+      this.sentence.textContent = ""
       const word = (data.rus1[getRandomNumber(0, data.rus1.length - 1)]);
 
       let i = 0;
@@ -141,8 +145,8 @@ export default class TextPanel {
       if (this.sentence.textContent.length > 50) {
         this.sentence.textContent =  this.sentence.textContent.slice(0, this.sentence.textContent.length - word.length);
       } 
+      // this.sentence.textContent  = 
     }
       this.nextLetter = this.sentence.textContent.slice(0, 1);
     }
-  
 }

@@ -17,6 +17,7 @@ class App {
     _mute = false
     
   ) {
+      this.level = "word";    
       this.keysConfig = keysConfig;  
       this.textPanel = new TextPanel(document.querySelector(".app"), this);
 
@@ -65,10 +66,12 @@ class App {
         this.textPanel.clear()
         this.textPanel.clearStatisic()
       }); 
+
       window.addEventListener("beforeunload", () => setLocalStorage  ("safe", JSON.stringify({data : "kek"})));
       this.settingButton.addEventListener("click", () => document.querySelector(".settings").classList.remove("fade-out"));
       this.closeButton.addEventListener('click', () =>   document.querySelector(".settings").classList.add("fade-out"));
-      document.querySelectorAll('.setting__subitem')[1].addEventListener('click', () => this.changeWord(true));
+      document.querySelectorAll('.setting__subitem')[0].addEventListener('click', () => {this.changeWord('word')});
+      document.querySelectorAll('.setting__subitem')[1].addEventListener('click', () => {this.changeWord('sentence')});
     }
 
 
@@ -93,7 +96,6 @@ class App {
       this._isFocus = value;
       document.querySelector(".header").classList.add("blur");
       this.keyboard.board.classList.add("blur");
-      
     } else {
       this._isFocus = value;
       this.keyboard.board.classList.remove("blur");
@@ -105,7 +107,17 @@ class App {
     return this._isFocus;
   }
 
-  changeWord(changeLevel) {
+  changeWord(level) {
+    console.log(level)
+    if (level === 'sentence') {
+      
+      this.level = "sentence"
+    }
+
+    if (level === 'word') {
+      console.log('kek')
+      this.level = "word";
+    }
     fetch("/data.json")
     .then(response => {
      
@@ -115,7 +127,7 @@ class App {
       return response.json();
     }).then(
       jsonData => {
-        this.textPanel.updateData(jsonData, changeLevel);
+        this.textPanel.updateData(jsonData);
       });
   }
 
