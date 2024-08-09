@@ -23,6 +23,7 @@ class Stopwatch {
   reset() {
     this.seconds = 0;
     clearInterval(this.interval);
+    this.start()
   }
 }
 

@@ -16,14 +16,21 @@ export default class TextPanel {
 
     this.speedText = document.querySelector(".speed-text");
     this.speedText.textContent = 0;
-
-
-    
     
     this.textInp.addEventListener('input', () => this.checkLetter());
     this.textInp.addEventListener('click', () => this.highlightMistake());
   }
 
+
+  clearStatisic() {
+    this.stopWach.reset()
+    this.errPercent =
+    this._pressedSymbols = 0;
+    this.speedText.textContent = 0;
+    this.countspeedText()
+
+    document.querySelector(".err-text").textContent  = 0
+  }
 
   countspeedText() {
     const time = this.stopWach.getData()
@@ -50,12 +57,14 @@ export default class TextPanel {
         this.changeLetter() 
       }
     }
+    console.log('доходит', this.errPercent)
     document.querySelector(".err-text").textContent =  this.errPercent + '%';
   }
   
   set errPercent(val) {
-    this._errors = 0;
-    this._pressedSymbols = 0;
+    this._errors = val;
+    this._pressedSymbols = val;
+    document.querySelector(".err-text").textContent = 0;
   }
 
   get lettersCounter() {

@@ -37,11 +37,6 @@ class App {
       
       this.render();
       this.addListeners()
-
-      
-     
-     
-      
     }
 
     set mute (value) {
@@ -66,7 +61,10 @@ class App {
       this.boardButton.addEventListener('click', () => this.isKeyboard = this.isKeyboard);
       this.colorButton.addEventListener('click', () => this.colors = this.colors);
       document.addEventListener("keypress", e => Key.defineKey(e, this));
-      this.refreshButton.addEventListener("click", () => this.textPanel.clear());
+      this.refreshButton.addEventListener("click", () => {
+        this.textPanel.clear()
+        this.textPanel.clearStatisic()
+      }); 
       window.addEventListener("beforeunload", () => setLocalStorage  ("safe", JSON.stringify({data : "kek"})));
       this.settingButton.addEventListener("click", () => document.querySelector(".settings").classList.remove("fade-out"));
       this.closeButton.addEventListener('click', () =>   document.querySelector(".settings").classList.add("fade-out"));
