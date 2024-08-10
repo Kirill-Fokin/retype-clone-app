@@ -119,7 +119,7 @@ class App {
       console.log('kek')
       this.level = "word";
     }
-    fetch("/data.json")
+    fetch("data.json")
     .then(response => {
      
       if (!response.ok) {         

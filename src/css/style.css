@@ -615,7 +615,7 @@ body {
   height: 100px;
   z-index: 10;
   zoom: 1;
-  background-image: url(../../assets/images/hand.png) no-repeat;
+  background-image: url(/src/assets/images/hand.png) no-repeat;
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
 }
