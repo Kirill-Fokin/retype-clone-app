@@ -3,7 +3,6 @@ import Keyboard from "./Keyboard.js";
 import TextPanel from "./TextPanel.js";
 import Key from "./Key.js";
 import { rusKeys, engKeys} from "./key-config.js";
-import Stopwatch from "./stopwatch.js";
 
 class App {
 
@@ -23,7 +22,7 @@ class App {
 
       this.mute = false;
       
-      fetch("/data.json")
+      fetch("../../data.json")
         .then(response => {
           if (!response.ok) {         
             throw new Error('Ошибка в fetch' + response.status.Text);
