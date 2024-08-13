@@ -1,4 +1,4 @@
-class Stopwatch {
+export default class Stopwatch {
   constructor() {
     this.seconds = 0;
     this.interval;
@@ -23,8 +23,6 @@ class Stopwatch {
   reset() {
     this.seconds = 0;
     clearInterval(this.interval);
-    this.start()
+    this.start();
   }
-}
-
-export default Stopwatch
+}g

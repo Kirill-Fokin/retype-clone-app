@@ -1,5 +1,4 @@
 import { createElement, getColor } from "./helpers.js";
-// import { rusKeys } from "./key-config.js";
 import Key from "./Key.js";
 
 export default class Keyboard {
@@ -11,7 +10,6 @@ export default class Keyboard {
     this.prev = null;
     this.counter = 0;
     this.keys = [];
-    console.log(this)
 
     this.render();
   }
@@ -23,21 +21,19 @@ export default class Keyboard {
   }
 
   setUpHand() {
-    let sentence = document.querySelector('.sentence').textContent
-    console.log(sentence[0])
+    let sentence = document.querySelector(".sentence").textContent;
+
     this.keys.filter((el) => { 
-      if (el.text.toUpperCase()=== sentence[0].toUpperCase()|| (el.text === "Whitespace" && sentence[0] === ' ' )) {
+      if (el.text.toUpperCase()=== sentence[0].toUpperCase()|| (el.text === "Whitespace" && sentence[0] === " " )) {
         el.openHand()
       }
-    })
-   
-
+    });
   }
 
    removeColors() {
      this.keys.forEach(keysObj => {
-       keysObj.keyButton.classList.remove("orange", "violet", "green", "orange", "blue", "yelow", "light-gray" );
-    })
+       keysObj.keyButton.classList.remove("orange", "violet", "green", "orange", "blue", "yelow", "light-gray");
+    });
    }
 
   render() {
