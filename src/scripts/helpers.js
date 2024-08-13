@@ -7,31 +7,31 @@ const getRandomNumber = (min, max) => {
 const getColor = (elem, finger) => {
   switch (finger) {
     case "1":
-    elem.classList.add('violet');
+    elem.classList.add("violet");
     break;
     case "2":
-      elem.classList.add('blue')
+      elem.classList.add("blue")
     break;
     case "3":
-      elem.classList.add('green')
+      elem.classList.add("green")
     break;
     case "4":
-      elem.classList.add('orange')
+      elem.classList.add("orange")
     break;
     case "5":
-      elem.classList.add('yelow')
+      elem.classList.add("yelow")
     break;
     case "6":
-      elem.classList.add('green')
+      elem.classList.add("green")
     break;
     case "7":
-      elem.classList.add('blue')
+      elem.classList.add("blue")
     break;
     case "8":
-      elem.classList.add('violet')
+      elem.classList.add("violet")
     break;
     case "10":
-      elem.classList.add('light-gray')
+      elem.classList.add("light-gray")
     break;
   }
 }
@@ -61,7 +61,7 @@ const createElement = (tagName, ...classNames) => {
      .then(response => {
       
        if (!response.ok) {         
-         throw new Error('Ошибка в fetch' + response.status.Text);
+         throw new Error("Ошибка в fetch" + response.status.Text);
        }
        return response.json();
      });
