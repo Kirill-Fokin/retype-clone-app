@@ -25,4 +25,4 @@ export default class Stopwatch {
     clearInterval(this.interval);
     this.start();
   }
-}g
+}

@@ -10,7 +10,7 @@ export default class TextPanel {
     this.failures = 0;
     this.initPanel();
     this._errors = 0;
-    //
+    
     this._pressedSymbols = 0;
     this.stopWach = new Stopwatch();
     this.stopWach.start();
@@ -18,8 +18,8 @@ export default class TextPanel {
     this.speedText = document.querySelector(".speed-text");
     this.speedText.textContent = 0;
     
-    this.textInp.addEventListener('input', () => this.checkLetter());
-    this.textInp.addEventListener('click', () => this.highlightMistake());
+    this.textInp.addEventListener("input", () => this.checkLetter());
+    this.textInp.addEventListener("click", () => this.highlightMistake());
   }
 
 
@@ -29,7 +29,6 @@ export default class TextPanel {
     this._pressedSymbols = 0;
     this.speedText.textContent = 0;
     this.countspeedText()
-
     document.querySelector(".err-text").textContent  = 0
   }
 
@@ -51,14 +50,14 @@ export default class TextPanel {
         this.highlightMistake() 
         this.textInp.value = currenValue.slice(0, -1);
       }, 200)
-      } else {
+    } else {
       if (this.sentence.textContent.length === 1) {
         this.clear();
       } else {
         this.changeLetter() 
       }
     }
-    document.querySelector(".err-text").textContent =  this.errPercent + '%';
+    document.querySelector(".err-text").textContent =  this.errPercent + "%";
   }
   
   set errPercent(val) {
@@ -89,10 +88,10 @@ export default class TextPanel {
   }
   
   initPanel() {
-    this.textPanel = createElement('div', "text-panel");
-    this.textInp = createElement('input', "text-inp");
-    this.textInp.setAttribute('autofocus', '');
-    this.textInp.setAttribute('outline', 'none');
+    this.textPanel = createElement("div", "text-panel");
+    this.textInp = createElement("input", "text-inp");
+    this.textInp.setAttribute("autofocus", "");
+    this.textInp.setAttribute("outline", "none");
     this.textInp.type = "text";
     this.subTextChecked = createElement("span", "checked");
     this.subText = createElement("div", "subtext");
@@ -105,10 +104,10 @@ export default class TextPanel {
   }
 
   clear() {
-    this.sentence.textContent = '';
+    this.sentence.textContent = "";
     this.parent.changeWord();
-    this.subTextChecked.textContent = '';
-    this.textInp.value = '';
+    this.subTextChecked.textContent = "";
+    this.textInp.value = "";
     getSimpleAnimated(this.textInp, "green", 200) 
   }
 
@@ -117,7 +116,6 @@ export default class TextPanel {
     this.textInp.style.backgroundColor = "yellow";
     setTimeout(() => this.textInp.style.backgroundColor = "unset", 200);
     setTimeout(() => this.sentence.style.color = "white", 200);
-    
   }
 
   updateData(data) {
@@ -125,8 +123,6 @@ export default class TextPanel {
       const word = (data.rus2[getRandomNumber(0, data.rus2.length - 1)]);
       this.sentence.textContent = word;
     } else  {
-
-      console.log('kjk')
       this.sentence.textContent = ""
       const word = (data.rus1[getRandomNumber(0, data.rus1.length - 1)]);
 
@@ -146,6 +142,4 @@ export default class TextPanel {
       this.nextLetter = this.sentence.textContent.slice(0, 1);
       this.parent.keyboard.setUpHand(); 
     }
-
-   
 }
