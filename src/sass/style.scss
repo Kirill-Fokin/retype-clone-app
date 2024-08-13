@@ -1,9 +1,5 @@
 @import "base/normalize";
 
-//Abstract
-@import "abstract/constants";
-@import "abstract/mixins";
-
 //Base
 @import "base/base";
 @import "base/extends";
@@ -19,11 +15,3 @@
 @import "components/key-wrapper";
 @import "components/additional-setting";
 @import "components/settings";
-// @import "components/navigation";
-// @import "components/slider";
-// @import "components/quote";
-// @import "components/modal";
-// @import "components/call-me";
-
-
-

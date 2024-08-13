@@ -39,13 +39,20 @@
   } 
 
   .refresh-button {
+    position: relative;
+    left: -8rem;
+    top: 0.5rem;
+    cursor: pointer;
     border: none;
     background-color:rgb(45, 45, 45);
+    width: 2rem;
+    height: 2rem;
     
   }
 
   .refresh__image {
     width: 2rem;
+    height: 2rem;
   }
 
   .statistics {
