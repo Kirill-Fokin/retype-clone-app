@@ -1,0 +1,76 @@
+.keyboard-container {
+  position: relative;
+    margin-top: 6rem;;
+    display: flex;
+    row-gap: 0.3rem;
+    flex-wrap: wrap;
+    column-gap: 0.6rem;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: all 1s ease-in-out;
+
+
+   &.blur {
+    opacity: 0.1;
+   }
+}
+
+.none {
+  opacity: 0;
+}
+
+.keyboard-container .none {
+  display: none;
+}
+
+.version_block {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border: 2px solid white;
+  position: absolute;
+  bottom: 0;
+
+  span {
+    font-size: 2rem;
+    color: white;
+  }
+}
+
+.gray {
+  background-color: gray;
+}
+
+.green{
+  background-color: green;
+  color: rgb(20, 20, 20);
+  transition: all 1s ;
+}
+.hand {
+  top: 3rem;
+  background-position: -34.8rem 0;
+  position: absolute;
+  width: 58px;
+  height: 100px;
+  z-index: 1;
+  zoom: 1;
+  user-select: none;
+  background: url(/src/assets/images/hand.png) no-repeat;
+}
+
+.subtext {
+  user-select: none;
+  font-size: 1.57em;
+  margin-top: 0.7rem;;
+  color: white;
+}
+
+.checked {
+  color: red;
+}
+
+.fade {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
