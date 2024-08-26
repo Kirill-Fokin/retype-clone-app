@@ -1,6 +1,6 @@
 # retype-clone-app
 
-![Иллюстрация к проекту](https://github.com/jon/coolproject/raw/master/image/screen.png)
+![Иллюстрация к проекту](https://github.com//Kirill-Fokin/retype-clone-app/blob/main/screen.png
 
 ## Описание 
 
