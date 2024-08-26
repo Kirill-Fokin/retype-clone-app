@@ -1,6 +1,6 @@
 # retype-clone-app
 
-![Иллюстрация к проекту](https://github.com//Kirill-Fokin/retype-clone-app/blob/main/screen.png
+![Image alt](https://github.com//Kirill-Fokin/retype-clone-app/blob/main/screen.png
 
 ## Описание 
 
